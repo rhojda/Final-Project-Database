@@ -28,12 +28,16 @@ const cookieParser = require('cookie-parser');
 const expressSession = require('express-session');
 const csrf = require('csurf')
 
+
 const indexRouter = require('./routes/index');
 const gamesRouter = require('./routes/games');
+const usersRouter = require('./routes/users');
 
 
 app.use('/', indexRouter);
 app.use('/games', gamesRouter);
+app.use('/users', usersRouter);
+
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
@@ -64,6 +68,7 @@ app.use((req, res, next) => {
     res.locals._csrfToken = req.csrfToken()
     next()
 })
+
 
 /* GET home page. */
 app.use('/', function (req, res, next) {

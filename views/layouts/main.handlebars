@@ -11,11 +11,21 @@
         <strong>{{flash.intro}}</strong> {{{flash.message}}}
     </div>
     {{/if}}
-
     <nav>
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/games">Games</a></li>
+            {{#if currentUser}}
+            <li>Welcome {{currentUser.name}}</li>
+            <li>
+                <form action="/users/logout" role="form" method="post">
+                    <button type="submit" class="btn">Logout</button>
+                </form>
+            </li>
+            {{else}}
+            <li><a href="/users/register">Register</a></li>
+            <li><a href="/users/login">Login</a></li>
+            {{/if}}
         </ul>
     </nav>
     {{{body}}}
